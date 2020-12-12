@@ -12,12 +12,12 @@ sys.path.append(os.getcwd())
 
 from utils import orderConvex, shrink_poly
 
-DATA_FOLDER = "data/demo/source/"
-OUTPUT = "data/dataset/mlt/"
+DATA_FOLDER = "../DCIC2019/val/image"
+OUTPUT = "data/test_dataset/"
 MAX_LEN = 1200
 MIN_LEN = 600
 
-label = pd.read_csv(os.path.join(DATA_FOLDER, "label.csv"))
+label = pd.read_csv(os.path.join(DATA_FOLDER, "..", "verify_lable.csv"))
 
 im_fns = os.listdir(DATA_FOLDER)
 im_fns.sort()
@@ -34,13 +34,14 @@ for im_fn in tqdm(im_fns):
         if ext.lower() not in ['.jpg', '.png']:
             continue
 
-        img_path = os.path.join(DATA_FOLDER,im_fn)
+        img_path = os.path.join(DATA_FOLDER, im_fn)
         img = cv.imread(img_path)
         img_size = img.shape
         # 旋转竖的图片
         (h, w) = img_size[:2]  # 10
         if h < w:
-            print('pass')
+            # print('pass')
+            pass
         if h > w:
             image = cv.transpose(img)
             image = cv.flip(image, 0)
